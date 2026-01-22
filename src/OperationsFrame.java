@@ -16,6 +16,7 @@ public class OperationsFrame extends JFrame {
         mainTabs.addTab("Trip History", new TripHistoryPanel());
         mainTabs.addTab("Events", new EventPanel());
         mainTabs.addTab("Accommodation", new AccommodationPanel());
+        mainTabs.addTab("Amenities", new AmenitiesPanel());
         mainTabs.addTab("Customers", new CustomerPanel());
         mainTabs.addTab("Vehicles", new VehiclePanel());
         mainTabs.addTab("Reservations", new ReservationPanel());
