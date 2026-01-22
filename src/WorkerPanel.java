@@ -11,7 +11,7 @@ public class WorkerPanel extends JPanel {
         setLayout(new BorderLayout());
 
         // Στήλες Πίνακα
-        model = new DefaultTableModel(new String[]{"AT", "Name", "Last Name", "Salary", "Branch Code"}, 0){
+        model = new DefaultTableModel(new String[]{"AT", "Name", "Last Name", "Email", "Salary", "Branch Code"}, 0){
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -50,6 +50,7 @@ public class WorkerPanel extends JPanel {
                         rs.getString("wrk_AT"),
                         rs.getString("wrk_name"),
                         rs.getString("wrk_lname"),
+                        rs.getString("wrk_email"),
                         rs.getDouble("wrk_salary"),
                         rs.getInt("wrk_br_code")
                 });
@@ -61,6 +62,7 @@ public class WorkerPanel extends JPanel {
         JTextField at = new JTextField();
         JTextField name = new JTextField();
         JTextField lname = new JTextField();
+        JTextField email = new JTextField();
         JTextField salary = new JTextField();
         JComboBox<String> branchCombo = getBranchDropdown();
 
@@ -68,21 +70,23 @@ public class WorkerPanel extends JPanel {
                 "AT (Identity):", at,
                 "First Name:", name,
                 "Last Name:", lname,
+                "Email:", email,
                 "Salary:", salary,
                 "Branch:", branchCombo
         };
 
         if (JOptionPane.showConfirmDialog(this, message, "Add Worker", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
             try (Connection conn = DBConnection.getConnection();
-                 PreparedStatement pstmt = conn.prepareStatement("INSERT INTO worker (wrk_AT, wrk_name, wrk_lname, wrk_salary, wrk_br_code) VALUES (?, ?, ?, ?, ?)")) {
+                 PreparedStatement pstmt = conn.prepareStatement("INSERT INTO worker (wrk_AT, wrk_name, wrk_lname, wrk_email, wrk_salary, wrk_br_code) VALUES (?, ?, ?, ?, ?, ?)")) {
 
                 pstmt.setString(1, at.getText());
                 pstmt.setString(2, name.getText());
                 pstmt.setString(3, lname.getText());
-                pstmt.setDouble(4, Double.parseDouble(salary.getText()));
+                pstmt.setString(4, email.getText());
+                pstmt.setDouble(5, Double.parseDouble(salary.getText()));
 
                 String selectedBranch = (String) branchCombo.getSelectedItem();
-                pstmt.setInt(5, Integer.parseInt(selectedBranch.split(" - ")[0]));
+                pstmt.setInt(6, Integer.parseInt(selectedBranch.split(" - ")[0]));
 
                 pstmt.executeUpdate();
                 loadWorkers();
@@ -101,8 +105,8 @@ public class WorkerPanel extends JPanel {
 
         String workerAT = (String) model.getValueAt(row, 0);
 
-        String[] columnNames = {"First Name", "Last Name", "Salary", "Branch"};
-        String[] dbColumns = {"wrk_name", "wrk_lname", "wrk_salary", "wrk_br_code"};
+        String[] columnNames = {"First Name", "Last Name", "Email", "Salary", "Branch"};
+        String[] dbColumns = {"wrk_name", "wrk_lname", "wrk_email", "wrk_salary", "wrk_br_code"};
 
         JComboBox<String> colCombo = new JComboBox<>(columnNames);
 

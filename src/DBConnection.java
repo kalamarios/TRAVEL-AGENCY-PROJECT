@@ -5,7 +5,7 @@ import java.sql.SQLException;
 public class DBConnection {
     private static final String URL = "jdbc:mysql://localhost:3306/travel_agency_2025?serverTimezone=UTC";
     private static final String USER = "root"; //use your username
-    private static final String PASS = "password"; //use your password
+    private static final String PASS = "07112005Marios!"; //use your password
 
     public static Connection getConnection() {
         try {

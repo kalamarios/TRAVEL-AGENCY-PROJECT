@@ -60,7 +60,7 @@ class ReservationPanel extends JPanel {
         JTextField costField = new JTextField();
 
         try (Connection conn = DBConnection.getConnection(); Statement stmt = conn.createStatement()) {
-            ResultSet rsTrips = stmt.executeQuery("SELECT tr_id, dst_name FROM trip JOIN travel_to ON tr_id=to_tr_id JOIN destination ON to_dst_id=dst_id GROUP BY tr_id");
+            ResultSet rsTrips = stmt.executeQuery("SELECT tr_id, GROUP_CONCAT(dst_name SEPARATOR ', ') AS dst_name FROM trip JOIN travel_to ON tr_id=to_tr_id JOIN destination ON to_dst_id=dst_id GROUP BY tr_id");
             while (rsTrips.next()) tripCombo.addItem(rsTrips.getInt("tr_id") + " - " + rsTrips.getString("dst_name"));
 
             ResultSet rsCust = stmt.executeQuery("SELECT cust_id, cust_lname, cust_name FROM customer");
