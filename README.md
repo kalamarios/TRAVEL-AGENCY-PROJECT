@@ -7,6 +7,7 @@ GUI: A user-friendly dashboard for performing CRUD operations, assigning vehicle
 Tech Stack: Java, Swing, MySQL, JDBC.
 
 More detailed report: [Report.pdf](https://github.com/user-attachments/files/24953348/Koukoutsis_1108380_Vaxevanis_1108324_Lykas_1108390_AB.pdf)
-Meeting the requirements of a 2025-26, 5th semester team project in Databases class (CEID @ University of Patras) [Πρότζεκτ Εργαστηρίου ΒΔ 2025-2026.pdf](https://github.com/user-attachments/files/24953371/2025-2026.pdf)
+
+This is a 2025-26, 5th semester team project in Databases class of the Computer Engineering and Informatics Department @ University of Patras: [Πρότζεκτ Εργαστηρίου ΒΔ 2025-2026.pdf](https://github.com/user-attachments/files/24953371/2025-2026.pdf)
 
 
